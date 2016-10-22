@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration>
+	<properties>
+		<Property name="fileLogDir">./logs/</Property>
+		<Property name="logPattern">%d [%t] %-5p %c - %m%n</Property>
+		<Property name="fileLogTriggerSize">10 MB</Property>
+		<Property name="fileLogRolloverMax">20</Property>
+	</properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<RollingFile name="File" fileName="{fileLogDir}/test-run.log"
+			filePattern="${fileLogDir}/test-run-%d{yyyy-MMM-dd}-%i.log" append="true">
+			<PatternLayout pattern="${logPattern}" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="${fileLogTriggerSize}" />
+			</Policies>
+			<DefaultRolloverStrategy max="${fileLogRolloverMax}" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.tokyo.olympics.service" level="INFO" />
+		<Root level="error">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>
