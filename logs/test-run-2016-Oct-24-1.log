@@ -1,0 +1,2 @@
+2016-10-24 11:17:48,457 [main] ERROR com.tokyo.olympics.dao.JdbcConnection - driver not found
+2016-10-24 11:17:48,460 [main] ERROR com.tokyo.olympics.dao.JdbcConnection - No suitable driver found for jdbc:mysql://localhost:3306/
